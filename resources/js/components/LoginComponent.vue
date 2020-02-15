@@ -35,13 +35,7 @@
             <div class="set-header">
             <img src="public/assets/img/header1.jpg">
             <div class="set-text">
-               <h2 class="htext _h2" v-if="lang=='en'"><span>S</span>pectrum <span>T</span>herapeutics <span>E</span>xperience <span>P</span>rogram</h2>
-
-               <h2 class="htext _h2" v-if="lang=='fn'"><span>P</span>rogramme <span>E</span>xpérience de  <span>S</span>pectrum <span>T</span>herapeutics</h2>
-               
-
-                   
-
+               <h2 class="htext _h2"><span>S</span>pectrum <span>T</span>herapeutics <span>E</span>xperience <span>P</span>rogram</h2>
             </div>
         </div>
          <div class="container-fluid set-questions">
@@ -67,8 +61,8 @@
                <div class="row">
                   <div class="col-md-6">
                      <div class="leftspace">
-                        <h3  class="h3">{{this.$lang.text_1[lang]}}</h3>
-                        <p>{{this.$lang.text_2[lang]}}</p>
+                        <h3  class="h3">Welcome</h3>
+                        <p>A program to gain a better understanding of initiation and titration principles in the authorization of Spectrum Therapeutics Medical Cannabis (MC) both within your clinical practice with your chronic pain patients and through a group learning environment.</p>
                      </div>
                   </div>
                   <div class="col-md-6">
@@ -77,16 +71,17 @@
                            <h3 class="h3"></h3>
                            <form > 
                            <div class="form-group">
-                              <div class="text01">{{this.$lang.text_3[lang]}}</div>
+                              <div class="text01">Email</div>
                               <input type="text"   ref="my_email" class="form-control input-lg" /> 
                            </div>
                            <div class="form-group">
-                              <div class="text01">{{this.$lang.text_4[lang]}}</div>
+                              <div class="text01">Password</div>
                               <input type="password" ref="my_password" class="form-control input-lg" /> 
                            </div>
 
                            <div class="form-group">
-                              <div class="text01">{{this.$lang.text_5[lang]}}</div>
+                              <div class="text01">Language</div>
+                              <!-- <input type="password" ref="my_password" class="form-control input-lg" />  -->
                               <select @change="langc" v-model="lang" class="form-control input-lg">
                                  <option value="en">English</option>
                                  <option value="fn">French</option>
@@ -94,21 +89,15 @@
                            </div>
                            
 
-                           <div v-if="wrong && lang=='en'" class="alert alert-danger">Wrong credentials</div>
-                           <div v-if="wrong && lang=='fn'" class="alert alert-danger">Identifiants incorrects</div>
-                           
+                           <div v-if="wrong" class="alert alert-danger">Wrong credentials</div>
 
                            <div class="checkbox">
-                              <label><input type="checkbox"> {{this.$lang.text_6[lang]}}</label>
+                              <label><input type="checkbox"> Remember me</label>
                            </div>
                            <div class="text-left">
-                              <button @click.prevent="login()"  title="Send Message" class="btn btn-info  btn-lg">{{this.$lang.text_7[lang]}}</button>
+                              <button @click.prevent="login()"  title="Send Message" class="btn btn-info  btn-lg">Sign In</button>
                            </div>
-                           <p v-if="lang=='en'" class="text-left text-tnc">By entering this site you agree to our    <a target="_blank" :href="'/'+this.$foldername+'/#/privacy'">Privacy Policy</a>.</p>
-
-                           <p  v-if="lang=='fn'" class="text-left text-tnc">En accédant à ce site, vous acceptez notre <a target="_blank" :href="'/'+this.$foldername+'/#/privacy'">politique</a> en matière de protection des renseignements personnels.</p>
-
-                           
+                           <p class="text-left text-tnc">By entering this site you agree to our    <a target="_blank" :href="'/'+this.$foldername+'/#/privacy'">Privacy Policy</a>.</p>
                            </form>
 
                         </div>
@@ -150,10 +139,6 @@ export default {
             lang:'en',
          }
          
-      },
-      mounted(){
-         localStorage.setItem('language',this.lang);
-         console.log('sdddd');
       },
       methods : {
             langc(){

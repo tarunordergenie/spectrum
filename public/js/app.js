@@ -2676,13 +2676,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -2719,7 +2712,6 @@ __webpack_require__.r(__webpack_exports__);
       valid: '',
       msg: '',
       role: localStorage.getItem('role'),
-      lang: localStorage.getItem('language'),
       user_id: localStorage.getItem('user_id'),
       currentEditId: 0,
       cdate: '',
@@ -3320,17 +3312,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3343,10 +3324,6 @@ __webpack_require__.r(__webpack_exports__);
       wrong: false,
       lang: 'en'
     };
-  },
-  mounted: function mounted() {
-    localStorage.setItem('language', this.lang);
-    console.log('sdddd');
   },
   methods: {
     langc: function langc() {
@@ -3408,7 +3385,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_includes_HeaderComponent__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/includes/HeaderComponent */ "./resources/js/components/includes/HeaderComponent.vue");
-//
 //
 //
 //
@@ -3980,41 +3956,41 @@ __webpack_require__.r(__webpack_exports__);
         $("#err-4").addClass('hide');
       }
 
+      if (this.firstAssesmentAnswers[5].ans == '') {
+        this.error = true;
+        $("#slider-5").focus();
+        this.submitted = true;
+        this.msg = 'Please Select one option';
+        $("#err-5").removeClass('hide');
+        return;
+      } else {
+        $("#err-5").addClass('hide');
+      }
+
       if (this.firstAssesmentAnswers[6].ans == '') {
         this.error = true;
         $("#slider-6").focus();
         this.submitted = true;
-        this.msg = 'Please Select one option';
+        this.msg = 'Please enter year ';
         $("#err-6").removeClass('hide');
         return;
       } else {
         $("#err-6").addClass('hide');
       }
 
-      if (this.firstAssesmentAnswers[5].ans == '') {
-        this.error = true;
-        $("#slider-5").focus();
-        this.submitted = true;
-        this.msg = 'Please enter year ';
-        $("#err-5").removeClass('hide');
-        return;
-      } else {
-        $("#err-5").addClass('hide');
-      }
-
       var date = new Date();
       var year = date.getFullYear();
       var lastYear = year - 100;
 
-      if (this.firstAssesmentAnswers[5].ans < lastYear || this.firstAssesmentAnswers[5].ans > year) {
+      if (this.firstAssesmentAnswers[6].ans < lastYear || this.firstAssesmentAnswers[6].ans > year) {
         this.error = true;
-        $("#slider-5").focus();
+        $("#slider-6").focus();
         this.submitted = true;
         this.msg = 'Year must be between ' + lastYear + ' to ' + year;
-        $("#err-5").removeClass('hide');
+        $("#err-6").removeClass('hide');
         return;
       } else {
-        $("#err-5").addClass('hide');
+        $("#err-6").addClass('hide');
       }
 
       if (this.firstAssesmentAnswers[7].ans == '') {
@@ -4455,7 +4431,6 @@ __webpack_require__.r(__webpack_exports__);
       password: '',
       cpassword: '',
       cityData: [],
-      llanguage: localStorage.getItem('language'),
       edit: {},
       msg: ''
     };
@@ -4842,13 +4817,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -4862,9 +4830,7 @@ __webpack_require__.r(__webpack_exports__);
       password: '',
       role: '',
       dateWeb: '',
-      language: 'en',
-      lang: 'en',
-      llanguage: localStorage.getItem('language'),
+      language: '',
       Name: '',
       wrong: false,
       users: [],
@@ -42476,31 +42442,7 @@ var render = function() {
           _c("img", { attrs: { src: "public/assets/img/header1.jpg" } }),
           _vm._v(" "),
           _c("div", { staticClass: "set-text" }, [
-            _vm.language == "en"
-              ? _c("h2", { staticClass: "htext _h2" }, [
-                  _c("span", [_vm._v("S")]),
-                  _vm._v("pectrum "),
-                  _c("span", [_vm._v("T")]),
-                  _vm._v("herapeutics "),
-                  _c("span", [_vm._v("E")]),
-                  _vm._v("xperience "),
-                  _c("span", [_vm._v("P")]),
-                  _vm._v("rogram")
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.language == "fn"
-              ? _c("h2", { staticClass: "htext _h2" }, [
-                  _c("span", [_vm._v("P")]),
-                  _vm._v("rogramme "),
-                  _c("span", [_vm._v("E")]),
-                  _vm._v("xpérience de  "),
-                  _c("span", [_vm._v("S")]),
-                  _vm._v("pectrum "),
-                  _c("span", [_vm._v("T")]),
-                  _vm._v("herapeutics")
-                ])
-              : _vm._e(),
+            _vm._m(0),
             _vm._v(" "),
             _vm.role == "2" || _vm.role == "3"
               ? _c(
@@ -42512,16 +42454,13 @@ var render = function() {
                         "/" + this.$foldername + "/#/dashboard/patientassesment"
                     }
                   },
-                  [
-                    _vm._m(0),
-                    _vm._v(" " + _vm._s(this.$lang.text_32[_vm.lang]))
-                  ]
+                  [_vm._m(1), _vm._v(" Start New Assessment")]
                 )
               : _vm._e()
           ])
         ]),
         _vm._v(" "),
-        _vm._m(1),
+        _vm._m(2),
         _vm._v(" "),
         _c(
           "div",
@@ -42532,14 +42471,12 @@ var render = function() {
                 _c("div", { staticClass: "col-md-9" }, [
                   _vm.role == "2" || _vm.role == "3"
                     ? _c("h3", { staticClass: "h3" }, [
-                        _vm._v(_vm._s(this.$lang.text_33[_vm.language]))
+                        _vm._v("Patient Management Console")
                       ])
                     : _vm._e(),
                   _vm._v(" "),
                   _vm.role == "1"
-                    ? _c("h3", { staticClass: "h3" }, [
-                        _vm._v(_vm._s(this.$lang.text_9[_vm.language]))
-                      ])
+                    ? _c("h3", { staticClass: "h3" }, [_vm._v("Doctors")])
                     : _vm._e(),
                   _vm._v(" "),
                   _c(
@@ -42609,7 +42546,7 @@ var render = function() {
                               attrs: { type: "button" },
                               on: { click: _vm.filterPatients }
                             },
-                            [_vm._v(_vm._s(this.$lang.text_49[_vm.lang]))]
+                            [_vm._v("Go")]
                           )
                         ])
                       ])
@@ -42648,7 +42585,7 @@ var render = function() {
                               attrs: { type: "button" },
                               on: { click: _vm.filterUser }
                             },
-                            [_vm._v(_vm._s(this.$lang.text_49[_vm.lang]))]
+                            [_vm._v("Go")]
                           )
                         ])
                       ])
@@ -42668,9 +42605,7 @@ var render = function() {
                               _vm.role == "1"
                                 ? _c("td", [
                                     _c("span", { staticClass: "bleft" }, [
-                                      _vm._v(
-                                        _vm._s(this.$lang.text_9[_vm.lang])
-                                      )
+                                      _vm._v("Doctor")
                                     ])
                                   ])
                                 : _vm._e(),
@@ -42678,9 +42613,7 @@ var render = function() {
                               _vm.role == "1"
                                 ? _c("td", [
                                     _c("span", { staticClass: "bleft" }, [
-                                      _vm._v(
-                                        _vm._s(this.$lang.text_10[_vm.lang])
-                                      )
+                                      _vm._v("Role")
                                     ])
                                   ])
                                 : _vm._e(),
@@ -42688,9 +42621,7 @@ var render = function() {
                               _vm.role == "2" || _vm.role == "3"
                                 ? _c("td", [
                                     _c("span", { staticClass: "bleft" }, [
-                                      _vm._v(
-                                        _vm._s(this.$lang.text_34[_vm.lang])
-                                      )
+                                      _vm._v("Patient’s Initials")
                                     ])
                                   ])
                                 : _vm._e(),
@@ -42698,38 +42629,16 @@ var render = function() {
                               _vm.role == "2" || _vm.role == "3"
                                 ? _c("td", [
                                     _c("span", { staticClass: "bleft" }, [
-                                      _vm._v(
-                                        _vm._s(this.$lang.text_34[_vm.lang])
-                                      )
+                                      _vm._v("Date of Next Follow Up")
                                     ])
                                   ])
                                 : _vm._e(),
                               _vm._v(" "),
-                              _c("td", [
-                                _c("span", { staticClass: "bleft" }, [
-                                  _vm._v(_vm._s(this.$lang.text_13[_vm.lang]))
-                                ])
-                              ]),
+                              _vm._m(3),
                               _vm._v(" "),
-                              _c("td", [
-                                _c("span", { staticClass: "bleft" }, [
-                                  _vm._v("1"),
-                                  _c("sup", [_vm._v("st")]),
-                                  _vm._v(
-                                    " " + _vm._s(this.$lang.text_14[_vm.lang])
-                                  )
-                                ])
-                              ]),
+                              _vm._m(4),
                               _vm._v(" "),
-                              _c("td", [
-                                _c("span", { staticClass: "bleft" }, [
-                                  _vm._v("2"),
-                                  _c("sup", [_vm._v("nd")]),
-                                  _vm._v(
-                                    " " + _vm._s(this.$lang.text_14[_vm.lang])
-                                  )
-                                ])
-                              ])
+                              _vm._m(5)
                             ])
                           ]),
                           _vm._v(" "),
@@ -42823,7 +42732,7 @@ var render = function() {
                                     "span",
                                     { staticClass: "bleft2 center date" },
                                     [
-                                      _vm._m(2, true),
+                                      _vm._m(6, true),
                                       _vm._v(" "),
                                       _c(
                                         "p",
@@ -42851,7 +42760,7 @@ var render = function() {
                                         "span",
                                         { staticClass: "bleft2 center" },
                                         [
-                                          _vm._m(3, true),
+                                          _vm._m(7, true),
                                           _vm._v(" "),
                                           _c(
                                             "p",
@@ -42919,7 +42828,7 @@ var render = function() {
                                         "span",
                                         { staticClass: "bleft2 center" },
                                         [
-                                          _vm._m(4, true),
+                                          _vm._m(8, true),
                                           _vm._v(" "),
                                           _c(
                                             "p",
@@ -43009,16 +42918,12 @@ var render = function() {
                       ? _c("table", { staticClass: "table mytable" }, [
                           _c("thead", [
                             _c("tr", [
-                              _c("td", [
-                                _vm._v(_vm._s(this.$lang.text_11[_vm.lang]))
-                              ]),
+                              _c("td", [_vm._v("S No.")]),
                               _vm._v(" "),
                               _vm.role == "1"
                                 ? _c("td", [
                                     _c("span", { staticClass: "bleft" }, [
-                                      _vm._v(
-                                        _vm._s(this.$lang.text_9[_vm.lang])
-                                      )
+                                      _vm._v("Doctor")
                                     ])
                                   ])
                                 : _vm._e(),
@@ -43026,9 +42931,7 @@ var render = function() {
                               _vm.role == "1"
                                 ? _c("td", [
                                     _c("span", { staticClass: "bleft" }, [
-                                      _vm._v(
-                                        _vm._s(this.$lang.text_10[_vm.lang])
-                                      )
+                                      _vm._v("Role")
                                     ])
                                   ])
                                 : _vm._e(),
@@ -43060,9 +42963,7 @@ var render = function() {
                               _vm.role == "1"
                                 ? _c("td", [
                                     _c("span", { staticClass: "bleft" }, [
-                                      _vm._v(
-                                        _vm._s(this.$lang.text_12[_vm.lang])
-                                      )
+                                      _vm._v("Pre Meeting")
                                     ])
                                   ])
                                 : _vm._e(),
@@ -43083,38 +42984,16 @@ var render = function() {
                                   ])
                                 : _vm._e(),
                               _vm._v(" "),
-                              _c("td", [
-                                _c("span", { staticClass: "bleft" }, [
-                                  _vm._v(_vm._s(this.$lang.text_13[_vm.lang]))
-                                ])
-                              ]),
+                              _vm._m(9),
                               _vm._v(" "),
-                              _c("td", [
-                                _c("span", { staticClass: "bleft" }, [
-                                  _vm._v("1"),
-                                  _c("sup", [_vm._v("st")]),
-                                  _vm._v(
-                                    " " + _vm._s(this.$lang.text_14[_vm.lang])
-                                  )
-                                ])
-                              ]),
+                              _vm._m(10),
                               _vm._v(" "),
-                              _c("td", [
-                                _c("span", { staticClass: "bleft" }, [
-                                  _vm._v("2"),
-                                  _c("sup", [_vm._v("nd")]),
-                                  _vm._v(
-                                    " " + _vm._s(this.$lang.text_14[_vm.lang])
-                                  )
-                                ])
-                              ]),
+                              _vm._m(11),
                               _vm._v(" "),
                               _vm.role == "1"
                                 ? _c("td", [
                                     _c("span", { staticClass: "bleft" }, [
-                                      _vm._v(
-                                        _vm._s(this.$lang.text_15[_vm.lang])
-                                      )
+                                      _vm._v("Post Meeting")
                                     ])
                                   ])
                                 : _vm._e(),
@@ -43122,9 +43001,7 @@ var render = function() {
                               _vm.role == "1"
                                 ? _c("td", [
                                     _c("span", { staticClass: "bleft" }, [
-                                      _vm._v(
-                                        _vm._s(this.$lang.text_9[_vm.lang])
-                                      )
+                                      _vm._v("Edit")
                                     ])
                                   ])
                                 : _vm._e()
@@ -43326,15 +43203,7 @@ var render = function() {
                                           }
                                         }
                                       },
-                                      [
-                                        _vm.lang == "en"
-                                          ? _c("span", [_vm._v("Edit")])
-                                          : _vm._e(),
-                                        _vm._v(" "),
-                                        _vm.lang == "fn"
-                                          ? _c("span", [_vm._v("Modifier")])
-                                          : _vm._e()
-                                      ]
+                                      [_vm._v("Edit")]
                                     )
                                   ])
                                 ])
@@ -43352,7 +43221,7 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _vm._m(5),
+      _vm._m(12),
       _vm._v(" "),
       _c(
         "div",
@@ -43361,40 +43230,10 @@ var render = function() {
           _c("form", { attrs: { id: "preSurvey" } }, [
             _c("div", { staticClass: "modal-dialog modal-lg" }, [
               _c("div", { staticClass: "modal-content" }, [
-                _c("div", { staticClass: "modal-header" }, [
-                  _c("h3", { staticClass: "modal-title h3" }, [
-                    _vm._v(_vm._s(this.$lang.text_22[_vm.lang]))
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "text-sub" }, [
-                    _vm._v(_vm._s(this.$lang.text_23[_vm.lang]) + ".")
-                  ])
-                ]),
+                _vm._m(13),
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-body" }, [
-                  _c("div", { staticClass: "thanks" }, [
-                    _c("img", {
-                      staticClass: "art",
-                      attrs: { src: "public/assets/img/art1.svg", alt: "" }
-                    }),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "text" }, [
-                      _vm._v(
-                        "  \n                                       " +
-                          _vm._s(this.$lang.text_31[_vm.lang]) +
-                          "\n                                       "
-                      ),
-                      _c("br"),
-                      _vm._v(" "),
-                      _c("br"),
-                      _vm._v(" "),
-                      _vm._v(
-                        "\n                                       " +
-                          _vm._s(this.$lang.text_32[_vm.lang]) +
-                          "\n\n                     "
-                      )
-                    ])
-                  ]),
+                  _vm._m(14),
                   _vm._v(" "),
                   _c("div", { staticClass: "table-responsive" }, [
                     _c("table", { staticClass: "table mytable" }, [
@@ -43404,11 +43243,7 @@ var render = function() {
                           [
                             _c("td", [_vm._v("#")]),
                             _vm._v(" "),
-                            _c("td", [
-                              _c("span", { staticClass: "bleft2" }, [
-                                _vm._v(_vm._s(this.$lang.text_24[_vm.lang]))
-                              ])
-                            ]),
+                            _vm._m(15),
                             _vm._v(" "),
                             _vm._l(_vm.PreMeetingQuestionsOptions, function(
                               PreMeetingQuestionsOption
@@ -43548,7 +43383,7 @@ var render = function() {
                       attrs: { type: "button" },
                       on: { click: _vm.PreMeetingSubmit }
                     },
-                    [_vm._v(_vm._s(this.$lang.text_40[_vm.lang]))]
+                    [_vm._v("Submit")]
                   ),
                   _vm._v(" "),
                   _c(
@@ -43558,7 +43393,7 @@ var render = function() {
                       attrs: { type: "button" },
                       on: { click: _vm.reset_modal }
                     },
-                    [_vm._v(_vm._s(this.$lang.text_42[_vm.lang]))]
+                    [_vm._v("Reset")]
                   )
                 ]),
                 _vm._v(" "),
@@ -43571,7 +43406,7 @@ var render = function() {
                           attrs: { type: "button" },
                           on: { click: _vm.close_modal }
                         },
-                        [_vm._v(_vm._s(this.$lang.text_32[_vm.lang]))]
+                        [_vm._v("Close")]
                       )
                     ])
                   : _vm._e()
@@ -43587,7 +43422,7 @@ var render = function() {
         [
           _c("div", { staticClass: "modal-dialog" }, [
             _c("div", { staticClass: "modal-content modal-sm" }, [
-              _vm._m(6),
+              _vm._m(16),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c("div", { staticClass: "text-center" }, [
@@ -43627,7 +43462,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v(_vm._s(this.$lang.text_46[_vm.lang]))]
+                  [_vm._v("Reschedule")]
                 )
               ])
             ])
@@ -43641,7 +43476,7 @@ var render = function() {
         [
           _c("div", { staticClass: "modal-dialog" }, [
             _c("div", { staticClass: "modal-content " }, [
-              _vm._m(7),
+              _vm._m(17),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c("form", [
@@ -43682,7 +43517,7 @@ var render = function() {
                       },
                       [
                         _c("option", { attrs: { value: "" } }, [
-                          _vm._v(_vm._s(this.$lang.text_54[_vm.lang]))
+                          _vm._v("Select Role")
                         ]),
                         _vm._v(" "),
                         _c("option", { attrs: { value: "1" } }, [
@@ -43750,7 +43585,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
                     _c("label", { attrs: { for: "pwd" } }, [
-                      _vm._v(_vm._s(this.$lang.text_55[_vm.lang]) + ":")
+                      _vm._v("Province:")
                     ]),
                     _vm._v(" "),
                     _c(
@@ -43790,7 +43625,7 @@ var render = function() {
                       },
                       [
                         _c("option", { attrs: { value: "" } }, [
-                          _vm._v(_vm._s(this.$lang.text_55[_vm.lang]))
+                          _vm._v("Select Province")
                         ]),
                         _vm._v(" "),
                         _vm._l(_vm.provinceData, function(province) {
@@ -43806,9 +43641,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "pwd" } }, [
-                      _vm._v(_vm._s(this.$lang.text_56[_vm.lang]) + ":")
-                    ]),
+                    _c("label", { attrs: { for: "pwd" } }, [_vm._v("City:")]),
                     _vm._v(" "),
                     _c(
                       "select",
@@ -43844,7 +43677,7 @@ var render = function() {
                       },
                       [
                         _c("option", { attrs: { value: "" } }, [
-                          _vm._v(_vm._s(this.$lang.text_56[_vm.lang]))
+                          _vm._v("Select City")
                         ]),
                         _vm._v(" "),
                         _vm._l(_vm.cityData, function(city) {
@@ -43861,7 +43694,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
                     _c("label", { attrs: { for: "pwd" } }, [
-                      _vm._v(_vm._s(this.$lang.text_57[_vm.lang]) + ":")
+                      _vm._v("Date Of Webinar:")
                     ]),
                     _vm._v(" "),
                     _c("input", {
@@ -43889,7 +43722,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
                     _c("label", { attrs: { for: "pwd" } }, [
-                      _vm._v(_vm._s(this.$lang.text_4[_vm.lang]) + ":")
+                      _vm._v("Password:")
                     ]),
                     _vm._v(" "),
                     _c("input", {
@@ -43917,7 +43750,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
                     _c("label", { attrs: { for: "email" } }, [
-                      _vm._v(_vm._s(this.$lang.text_59[_vm.lang]) + ":")
+                      _vm._v("Language:")
                     ]),
                     _vm._v(" "),
                     _c(
@@ -43954,7 +43787,7 @@ var render = function() {
                       },
                       [
                         _c("option", { attrs: { value: "" } }, [
-                          _vm._v(_vm._s(this.$lang.text_59[_vm.lang]))
+                          _vm._v("Select Language")
                         ]),
                         _vm._v(" "),
                         _c("option", [_vm._v("en")]),
@@ -43988,7 +43821,7 @@ var render = function() {
                     attrs: { type: "button" },
                     on: { click: _vm.editUser }
                   },
-                  [_vm._v(_vm._s(this.$lang.text_21[_vm.lang]))]
+                  [_vm._v("Edit")]
                 )
               ])
             ])
@@ -44004,6 +43837,25 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("h2", { staticClass: "htext _h2" }, [
+      _c("span", [_vm._v("W")]),
+      _vm._v("elcome "),
+      _c("span", [_vm._v("T")]),
+      _vm._v("o "),
+      _c("span", [_vm._v("S")]),
+      _vm._v("pectrum "),
+      _c("span", [_vm._v("T")]),
+      _vm._v("herapeutics "),
+      _c("span", [_vm._v("E")]),
+      _vm._v("xperience "),
+      _c("span", [_vm._v("P")]),
+      _vm._v("rogram")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("span", { staticClass: "thum" }, [
       _c("img", { attrs: { src: "public/assets/img/arrow.svg" } })
     ])
@@ -44015,6 +43867,38 @@ var staticRenderFns = [
     return _c("div", { staticClass: "container-fluid set-questions" }, [
       _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-md-12" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("span", { staticClass: "bleft" }, [_vm._v("Patient Assessment")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("span", { staticClass: "bleft" }, [
+        _vm._v("1"),
+        _c("sup", [_vm._v("st")]),
+        _vm._v(" Patient Follow-Up")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("span", { staticClass: "bleft" }, [
+        _vm._v("2"),
+        _c("sup", [_vm._v("nd")]),
+        _vm._v(" Patient Follow-Up")
       ])
     ])
   },
@@ -44046,8 +43930,87 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("span", { staticClass: "bleft" }, [_vm._v("Patient Assessment")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("span", { staticClass: "bleft" }, [
+        _vm._v("1"),
+        _c("sup", [_vm._v("st")]),
+        _vm._v(" Patient Follow-Up")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("span", { staticClass: "bleft" }, [
+        _vm._v("2"),
+        _c("sup", [_vm._v("nd")]),
+        _vm._v(" Patient Follow-Up")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("a", { staticClass: "scrollup", attrs: { href: "#" } }, [
       _c("i", { staticClass: "fa fa-angle-up active" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h3", { staticClass: "modal-title h3" }, [
+        _vm._v("Pre-Meeting Survey ")
+      ]),
+      _vm._v(" "),
+      _c("p", { staticClass: "text-sub" }, [
+        _vm._v(
+          "Please select from the below options for each question as applicable."
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "thanks" }, [
+      _c("img", {
+        staticClass: "art",
+        attrs: { src: "public/assets/img/art1.svg", alt: "" }
+      }),
+      _vm._v(" "),
+      _c("p", { staticClass: "text" }, [
+        _vm._v(
+          "  \n                                       Thank you for completing the pre-meeting survey\n                                       "
+        ),
+        _c("br"),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(
+          "\n                                       Please proceed  to patient assessment after attending webinar \n                     "
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("span", { staticClass: "bleft2" }, [_vm._v("Questions")])
     ])
   },
   function() {
@@ -44120,53 +44083,15 @@ var render = function() {
     _c("div", {}),
     _vm._v(" "),
     _c("section", { staticClass: "login-section" }, [
-      _c("div", { staticClass: "set-header" }, [
-        _c("img", { attrs: { src: "public/assets/img/header1.jpg" } }),
-        _vm._v(" "),
-        _c("div", { staticClass: "set-text" }, [
-          _vm.lang == "en"
-            ? _c("h2", { staticClass: "htext _h2" }, [
-                _c("span", [_vm._v("S")]),
-                _vm._v("pectrum "),
-                _c("span", [_vm._v("T")]),
-                _vm._v("herapeutics "),
-                _c("span", [_vm._v("E")]),
-                _vm._v("xperience "),
-                _c("span", [_vm._v("P")]),
-                _vm._v("rogram")
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _vm.lang == "fn"
-            ? _c("h2", { staticClass: "htext _h2" }, [
-                _c("span", [_vm._v("P")]),
-                _vm._v("rogramme "),
-                _c("span", [_vm._v("E")]),
-                _vm._v("xpérience de  "),
-                _c("span", [_vm._v("S")]),
-                _vm._v("pectrum "),
-                _c("span", [_vm._v("T")]),
-                _vm._v("herapeutics")
-              ])
-            : _vm._e()
-        ])
-      ]),
-      _vm._v(" "),
       _vm._m(1),
       _vm._v(" "),
       _vm._m(2),
       _vm._v(" "),
+      _vm._m(3),
+      _vm._v(" "),
       _c("div", { staticClass: "container paddingtop-20 " }, [
         _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-6" }, [
-            _c("div", { staticClass: "leftspace" }, [
-              _c("h3", { staticClass: "h3" }, [
-                _vm._v(_vm._s(this.$lang.text_1[_vm.lang]))
-              ]),
-              _vm._v(" "),
-              _c("p", [_vm._v(_vm._s(this.$lang.text_2[_vm.lang]))])
-            ])
-          ]),
+          _vm._m(4),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-6" }, [
             _c("div", { staticClass: "rightspace" }, [
@@ -44175,9 +44100,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("form", [
                   _c("div", { staticClass: "form-group" }, [
-                    _c("div", { staticClass: "text01" }, [
-                      _vm._v(_vm._s(this.$lang.text_3[_vm.lang]))
-                    ]),
+                    _c("div", { staticClass: "text01" }, [_vm._v("Email")]),
                     _vm._v(" "),
                     _c("input", {
                       ref: "my_email",
@@ -44187,9 +44110,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
-                    _c("div", { staticClass: "text01" }, [
-                      _vm._v(_vm._s(this.$lang.text_4[_vm.lang]))
-                    ]),
+                    _c("div", { staticClass: "text01" }, [_vm._v("Password")]),
                     _vm._v(" "),
                     _c("input", {
                       ref: "my_password",
@@ -44199,9 +44120,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
-                    _c("div", { staticClass: "text01" }, [
-                      _vm._v(_vm._s(this.$lang.text_5[_vm.lang]))
-                    ]),
+                    _c("div", { staticClass: "text01" }, [_vm._v("Language")]),
                     _vm._v(" "),
                     _c(
                       "select",
@@ -44246,24 +44165,13 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _vm.wrong && _vm.lang == "en"
+                  _vm.wrong
                     ? _c("div", { staticClass: "alert alert-danger" }, [
                         _vm._v("Wrong credentials")
                       ])
                     : _vm._e(),
                   _vm._v(" "),
-                  _vm.wrong && _vm.lang == "fn"
-                    ? _c("div", { staticClass: "alert alert-danger" }, [
-                        _vm._v("Identifiants incorrects")
-                      ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "checkbox" }, [
-                    _c("label", [
-                      _c("input", { attrs: { type: "checkbox" } }),
-                      _vm._v(" " + _vm._s(this.$lang.text_6[_vm.lang]))
-                    ])
-                  ]),
+                  _vm._m(5),
                   _vm._v(" "),
                   _c("div", { staticClass: "text-left" }, [
                     _c(
@@ -44278,45 +44186,24 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v(_vm._s(this.$lang.text_7[_vm.lang]))]
+                      [_vm._v("Sign In")]
                     )
                   ]),
                   _vm._v(" "),
-                  _vm.lang == "en"
-                    ? _c("p", { staticClass: "text-left text-tnc" }, [
-                        _vm._v("By entering this site you agree to our    "),
-                        _c(
-                          "a",
-                          {
-                            attrs: {
-                              target: "_blank",
-                              href: "/" + this.$foldername + "/#/privacy"
-                            }
-                          },
-                          [_vm._v("Privacy Policy")]
-                        ),
-                        _vm._v(".")
-                      ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.lang == "fn"
-                    ? _c("p", { staticClass: "text-left text-tnc" }, [
-                        _vm._v("En accédant à ce site, vous acceptez notre "),
-                        _c(
-                          "a",
-                          {
-                            attrs: {
-                              target: "_blank",
-                              href: "/" + this.$foldername + "/#/privacy"
-                            }
-                          },
-                          [_vm._v("politique")]
-                        ),
-                        _vm._v(
-                          " en matière de protection des renseignements personnels."
-                        )
-                      ])
-                    : _vm._e()
+                  _c("p", { staticClass: "text-left text-tnc" }, [
+                    _vm._v("By entering this site you agree to our    "),
+                    _c(
+                      "a",
+                      {
+                        attrs: {
+                          target: "_blank",
+                          href: "/" + this.$foldername + "/#/privacy"
+                        }
+                      },
+                      [_vm._v("Privacy Policy")]
+                    ),
+                    _vm._v(".")
+                  ])
                 ])
               ])
             ])
@@ -44325,9 +44212,9 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(3),
+    _vm._m(6),
     _vm._v(" "),
-    _vm._m(4)
+    _vm._m(7)
   ])
 }
 var staticRenderFns = [
@@ -44380,6 +44267,27 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "set-header" }, [
+      _c("img", { attrs: { src: "public/assets/img/header1.jpg" } }),
+      _vm._v(" "),
+      _c("div", { staticClass: "set-text" }, [
+        _c("h2", { staticClass: "htext _h2" }, [
+          _c("span", [_vm._v("S")]),
+          _vm._v("pectrum "),
+          _c("span", [_vm._v("T")]),
+          _vm._v("herapeutics "),
+          _c("span", [_vm._v("E")]),
+          _vm._v("xperience "),
+          _c("span", [_vm._v("P")]),
+          _vm._v("rogram")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "container-fluid set-questions" }, [
       _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-md-12" })
@@ -44397,6 +44305,33 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-md-12" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-6" }, [
+      _c("div", { staticClass: "leftspace" }, [
+        _c("h3", { staticClass: "h3" }, [_vm._v("Welcome")]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v(
+            "A program to gain a better understanding of initiation and titration principles in the authorization of Spectrum Therapeutics Medical Cannabis (MC) both within your clinical practice with your chronic pain patients and through a group learning environment."
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "checkbox" }, [
+      _c("label", [
+        _c("input", { attrs: { type: "checkbox" } }),
+        _vm._v(" Remember me")
       ])
     ])
   },
@@ -44471,7 +44406,7 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "set-text" }, [
             _c("h2", { staticClass: "htext _h2" }, [
-              _vm._v(_vm._s(this.$lang.text_13[_vm.language]))
+              _vm._v("Patient Assessment")
             ]),
             _vm._v(" "),
             _c(
@@ -44480,10 +44415,7 @@ var render = function() {
                 staticClass: "btn btn-dafult btn_reset",
                 attrs: { href: "/" + this.$foldername + "/#/dashboard" }
               },
-              [
-                _c("i", { staticClass: "fa fa-angle-left" }),
-                _vm._v(" " + _vm._s(this.$lang.text_36[_vm.language]))
-              ]
+              [_c("i", { staticClass: "fa fa-angle-left" }), _vm._v(" Back")]
             )
           ])
         ]),
@@ -44492,35 +44424,11 @@ var render = function() {
           "div",
           { staticClass: "container-fluid set-questions" },
           [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-12" }, [
-                _c("div", { staticClass: "que_top" }, [
-                  _vm._v(_vm._s(this.$lang.text_37[_vm.language]))
-                ])
-              ])
-            ]),
+            _vm._m(0),
             _vm._v(" "),
             _vm._l(_vm.firstAssesmentQuestions, function(Question, index) {
               return _c("div", { staticClass: "row" }, [
-                index == 10
-                  ? _c("div", {}, [
-                      _c("div", { staticClass: "col-md-12" }, [
-                        _vm.language == "en"
-                          ? _c("div", { staticClass: "que_top" }, [
-                              _vm._v("PHYSICIAN MEDICAL CANNABIS AUTHORIZATION")
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm.language == "fn"
-                          ? _c("div", { staticClass: "que_top" }, [
-                              _vm._v(
-                                "AUTORISATION D’UTILISATION DE CANNABIS À DES FINS MÉDICALES PAR UN MÉDECIN"
-                              )
-                            ])
-                          : _vm._e()
-                      ])
-                    ])
-                  : _vm._e(),
+                index == 10 ? _c("div", {}, [_vm._m(1, true)]) : _vm._e(),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-12" }, [
                   _c(
@@ -46413,7 +46321,7 @@ var render = function() {
                             [
                               _c("div", { staticClass: "table-responsive" }, [
                                 _c("table", { staticClass: "table mytable" }, [
-                                  _vm._m(0, true),
+                                  _vm._m(2, true),
                                   _vm._v(" "),
                                   _c(
                                     "tbody",
@@ -46970,14 +46878,14 @@ var render = function() {
                         ]
                       ),
                       _vm._v(" "),
-                      _vm._m(1, true)
+                      _vm._m(3, true)
                     ]
                   )
                 ])
               ])
             }),
             _vm._v(" "),
-            _vm._m(2),
+            _vm._m(4),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
               _c("div", { staticClass: "col-md-12 text-center" }, [
@@ -46988,12 +46896,12 @@ var render = function() {
                     attrs: { type: "button" },
                     on: { click: _vm.submit }
                   },
-                  [_vm._v(_vm._s(this.$lang.text_40[_vm.language]))]
+                  [_vm._v("Submit")]
                 )
               ])
             ]),
             _vm._v(" "),
-            _vm._m(3)
+            _vm._m(5)
           ],
           2
         ),
@@ -47004,20 +46912,9 @@ var render = function() {
           [
             _c("div", { staticClass: "modal-dialog modal-lg" }, [
               _c("div", { staticClass: "modal-content" }, [
-                _vm._m(4),
+                _vm._m(6),
                 _vm._v(" "),
-                _c("div", { staticClass: "modal-body" }, [
-                  _c("div", { staticClass: "thanks active" }, [
-                    _c("img", {
-                      staticClass: "art",
-                      attrs: { src: "public/assets/img/art1.svg", alt: "" }
-                    }),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "text" }, [
-                      _vm._v(_vm._s(this.$lang.text_43[_vm.language]))
-                    ])
-                  ])
-                ]),
+                _vm._m(7),
                 _vm._v(" "),
                 _c("div", { staticClass: "modal-footer text-center" }, [
                   _c(
@@ -47027,7 +46924,7 @@ var render = function() {
                       attrs: { type: "button" },
                       on: { click: _vm.gotohome }
                     },
-                    [_vm._v(_vm._s(this.$lang.text_44[_vm.language]))]
+                    [_vm._v("Home")]
                   ),
                   _vm._v(" "),
                   _c(
@@ -47050,6 +46947,26 @@ var render = function() {
   )
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("div", { staticClass: "que_top" }, [_vm._v("PATIENT INFORMATION")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c("div", { staticClass: "que_top" }, [
+        _vm._v("PHYSICIAN MEDICAL CANNABIS AUTHORIZATION")
+      ])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -47169,7 +47086,24 @@ var staticRenderFns = [
       ),
       _vm._v(" "),
       _c("h3", { staticClass: "modal-title h3" }, [
-        _vm._v(" Patient Assessment Survey")
+        _vm._v(" Patient Assessment Survey ")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-body" }, [
+      _c("div", { staticClass: "thanks active" }, [
+        _c("img", {
+          staticClass: "art",
+          attrs: { src: "public/assets/img/art1.svg", alt: "" }
+        }),
+        _vm._v(" "),
+        _c("p", { staticClass: "text" }, [
+          _vm._v("Thank you for completing the patient assessment survey!")
+        ])
       ])
     ])
   }
@@ -47549,9 +47483,7 @@ var render = function() {
           _c("img", { attrs: { src: "public/assets/img/header.jpg" } }),
           _vm._v(" "),
           _c("div", { staticClass: "set-text" }, [
-            _c("h2", { staticClass: "htext _h2" }, [
-              _vm._v(_vm._s(this.$lang.text_21[_vm.llanguage]))
-            ]),
+            _c("h2", { staticClass: "htext _h2" }, [_vm._v("Profile")]),
             _vm._v(" "),
             _c(
               "a",
@@ -47559,10 +47491,7 @@ var render = function() {
                 staticClass: "btn btn-dafult btn_reset",
                 attrs: { href: "/" + this.$foldername + "/#/dashboard" }
               },
-              [
-                _c("i", { staticClass: "fa fa-angle-left" }),
-                _vm._v(" " + _vm._s(this.$lang.text_36[_vm.llanguage]))
-              ]
+              [_c("i", { staticClass: "fa fa-angle-left" }), _vm._v(" Back")]
             )
           ])
         ]),
@@ -47578,9 +47507,7 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "row form-group" }, [
                 _c("div", { staticClass: "col-md-6" }, [
-                  _c("label", { attrs: { for: "fname" } }, [
-                    _vm._v(_vm._s(this.$lang.text_18[_vm.llanguage]))
-                  ]),
+                  _c("label", { attrs: { for: "fname" } }, [_vm._v("Name")]),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -47640,7 +47567,7 @@ var render = function() {
               _c("div", { staticClass: "row form-group" }, [
                 _c("div", { staticClass: "col-md-6" }, [
                   _c("label", { attrs: { for: "fname" } }, [
-                    _vm._v(_vm._s(this.$lang.text_19[_vm.llanguage]))
+                    _vm._v("Province")
                   ]),
                   _vm._v(" "),
                   _c(
@@ -47680,7 +47607,7 @@ var render = function() {
                     },
                     [
                       _c("option", { attrs: { value: "" } }, [
-                        _vm._v(_vm._s(this.$lang.text_55[_vm.llanguage]))
+                        _vm._v("Select Province")
                       ]),
                       _vm._v(" "),
                       _vm._l(_vm.provinceData, function(province) {
@@ -47696,9 +47623,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-6" }, [
-                  _c("label", { attrs: { for: "lname" } }, [
-                    _vm._v(_vm._s(this.$lang.text_20[_vm.llanguage]))
-                  ]),
+                  _c("label", { attrs: { for: "lname" } }, [_vm._v("City")]),
                   _vm._v(" "),
                   _c(
                     "select",
@@ -47734,7 +47659,7 @@ var render = function() {
                     },
                     [
                       _c("option", { attrs: { value: "" } }, [
-                        _vm._v(_vm._s(this.$lang.text_56[_vm.llanguage]))
+                        _vm._v("Select City")
                       ]),
                       _vm._v(" "),
                       _vm._l(_vm.cityData, function(city) {
@@ -47753,7 +47678,7 @@ var render = function() {
               _c("div", { staticClass: "row form-group" }, [
                 _c("div", { staticClass: "col-md-6" }, [
                   _c("label", { attrs: { for: "fname" } }, [
-                    _vm._v(_vm._s(this.$lang.text_4[_vm.llanguage]))
+                    _vm._v("Password")
                   ]),
                   _vm._v(" "),
                   _c("input", {
@@ -47874,36 +47799,14 @@ var render = function() {
       _c("Header"),
       _vm._v(" "),
       _c("section", { staticClass: "login-section " }, [
-        _c("div", { staticClass: "set-header" }, [
-          _c("img", { attrs: { src: "public/assets/img/header1.jpg" } }),
-          _vm._v(" "),
-          _c("div", { staticClass: "set-text" }, [
-            _c("h2", { staticClass: "htext _h2" }, [
-              _c("span", [_vm._v(_vm._s(this.$lang.text_51[_vm.llanguage]))])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
         _vm._m(0),
+        _vm._v(" "),
+        _vm._m(1),
         _vm._v(" "),
         _c("div", { staticClass: "inner bgwhite  " }, [
           _c("div", { staticClass: "container-fluid set-questions" }, [
             _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-9" }, [
-                _c("br"),
-                _vm._v(" "),
-                _c("h3", { staticClass: "h3" }, [
-                  _vm._v(_vm._s(this.$lang.text_51[_vm.llanguage]) + "   "),
-                  _c(
-                    "a",
-                    {
-                      staticClass: "btn btn-sm btn-primary",
-                      attrs: { href: "#changedate", "data-toggle": "modal" }
-                    },
-                    [_vm._v(" " + _vm._s(this.$lang.text_52[_vm.llanguage]))]
-                  )
-                ])
-              ]),
+              _vm._m(2),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-3" }, [
                 _c("br"),
@@ -47914,7 +47817,7 @@ var render = function() {
                     staticClass: "btn btn-sm btn-info pull-right",
                     attrs: { href: "/" + this.$foldername + "/#/dashboard" }
                   },
-                  [_vm._v(" " + _vm._s(this.$lang.text_36[_vm.llanguage]))]
+                  [_vm._v(" Back")]
                 ),
                 _vm._v(" "),
                 _c("br")
@@ -47925,55 +47828,7 @@ var render = function() {
               _c("div", { staticClass: "col-md-12" }, [
                 _c("div", { staticClass: "table-responsive" }, [
                   _c("table", { staticClass: "table mytable" }, [
-                    _c("thead", [
-                      _c("tr", [
-                        _c("td", [
-                          _vm._v(_vm._s(this.$lang.text_17[_vm.llanguage]))
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("span", { staticClass: "bleft" }, [
-                            _vm._v(_vm._s(this.$lang.text_18[_vm.llanguage]))
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _vm._m(1),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("span", { staticClass: "bleft" }, [
-                            _vm._v(_vm._s(this.$lang.text_10[_vm.llanguage]))
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("span", { staticClass: "bleft" }, [
-                            _vm._v(_vm._s(this.$lang.text_19[_vm.llanguage]))
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("span", { staticClass: "bleft" }, [
-                            _vm._v(_vm._s(this.$lang.text_20[_vm.llanguage]))
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("span", { staticClass: "bleft" }, [
-                            _vm._v(
-                              " " + _vm._s(this.$lang.text_5[_vm.llanguage])
-                            )
-                          ])
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c("span", { staticClass: "bleft" }, [
-                            _vm._v(
-                              " " + _vm._s(this.$lang.text_21[_vm.llanguage])
-                            )
-                          ])
-                        ])
-                      ])
-                    ]),
+                    _vm._m(3),
                     _vm._v(" "),
                     _c(
                       "tbody",
@@ -48052,15 +47907,7 @@ var render = function() {
                                     }
                                   }
                                 },
-                                [
-                                  _vm.language == "en"
-                                    ? _c("span", [_vm._v("Edit")])
-                                    : _vm._e(),
-                                  _vm._v(" "),
-                                  _vm.language == "fn"
-                                    ? _c("span", [_vm._v("Modifier")])
-                                    : _vm._e()
-                                ]
+                                [_vm._v("Edit")]
                               )
                             ])
                           ])
@@ -48082,31 +47929,12 @@ var render = function() {
         [
           _c("div", { staticClass: "modal-dialog" }, [
             _c("div", { staticClass: "modal-content " }, [
-              _c("div", { staticClass: "modal-header" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "close active",
-                    attrs: {
-                      type: "button",
-                      "data-dismiss": "modal",
-                      "aria-hidden": "true"
-                    }
-                  },
-                  [_vm._v("X")]
-                ),
-                _vm._v(" "),
-                _c("h3", { staticClass: "modal-title h3" }, [
-                  _vm._v(_vm._s(this.$lang.text_53[_vm.llanguage]) + " ")
-                ])
-              ]),
+              _vm._m(4),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c("form", [
                   _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "pwd" } }, [
-                      _vm._v(_vm._s(this.$lang.text_54[_vm.llanguage]) + ":")
-                    ]),
+                    _c("label", { attrs: { for: "pwd" } }, [_vm._v("Role:")]),
                     _vm._v(" "),
                     _c(
                       "select",
@@ -48138,7 +47966,7 @@ var render = function() {
                       },
                       [
                         _c("option", { attrs: { value: "" } }, [
-                          _vm._v(_vm._s(this.$lang.text_54[_vm.llanguage]))
+                          _vm._v("Select Role")
                         ]),
                         _vm._v(" "),
                         _c("option", { attrs: { value: "1" } }, [
@@ -48157,9 +47985,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "pwd" } }, [
-                      _vm._v(_vm._s(this.$lang.text_18[_vm.llanguage]) + ":")
-                    ]),
+                    _c("label", { attrs: { for: "pwd" } }, [_vm._v("Name:")]),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -48212,7 +48038,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
                     _c("label", { attrs: { for: "pwd" } }, [
-                      _vm._v(_vm._s(this.$lang.text_19[_vm.llanguage]) + ":")
+                      _vm._v("Province:")
                     ]),
                     _vm._v(" "),
                     _c(
@@ -48248,7 +48074,7 @@ var render = function() {
                       },
                       [
                         _c("option", { attrs: { value: "" } }, [
-                          _vm._v(_vm._s(this.$lang.text_55[_vm.llanguage]))
+                          _vm._v("Select Province")
                         ]),
                         _vm._v(" "),
                         _vm._l(_vm.provinceData, function(province) {
@@ -48264,9 +48090,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "pwd" } }, [
-                      _vm._v(_vm._s(this.$lang.text_20[_vm.llanguage]) + ":")
-                    ]),
+                    _c("label", { attrs: { for: "pwd" } }, [_vm._v("City:")]),
                     _vm._v(" "),
                     _c(
                       "select",
@@ -48298,7 +48122,7 @@ var render = function() {
                       },
                       [
                         _c("option", { attrs: { value: "" } }, [
-                          _vm._v(_vm._s(this.$lang.text_56[_vm.llanguage]))
+                          _vm._v("Select City")
                         ]),
                         _vm._v(" "),
                         _vm._l(_vm.cityData, function(city) {
@@ -48315,7 +48139,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
                     _c("label", { attrs: { for: "pwd" } }, [
-                      _vm._v(_vm._s(this.$lang.text_57[_vm.llanguage]) + ":")
+                      _vm._v("Date Of Webinar:")
                     ]),
                     _vm._v(" "),
                     _c("input", {
@@ -48343,7 +48167,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
                     _c("label", { attrs: { for: "pwd" } }, [
-                      _vm._v(_vm._s(this.$lang.text_4[_vm.llanguage]) + ":")
+                      _vm._v("Password:")
                     ]),
                     _vm._v(" "),
                     _c("input", {
@@ -48371,7 +48195,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
                     _c("label", { attrs: { for: "email" } }, [
-                      _vm._v(_vm._s(this.$lang.text_5[_vm.llanguage]) + ":")
+                      _vm._v("Language:")
                     ]),
                     _vm._v(" "),
                     _c(
@@ -48381,8 +48205,8 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.lang,
-                            expression: "lang"
+                            value: _vm.language,
+                            expression: "language"
                           }
                         ],
                         staticClass: "form-control",
@@ -48396,7 +48220,7 @@ var render = function() {
                                 var val = "_value" in o ? o._value : o.value
                                 return val
                               })
-                            _vm.lang = $event.target.multiple
+                            _vm.language = $event.target.multiple
                               ? $$selectedVal
                               : $$selectedVal[0]
                           }
@@ -48404,7 +48228,7 @@ var render = function() {
                       },
                       [
                         _c("option", { attrs: { value: "" } }, [
-                          _vm._v(_vm._s(this.$lang.text_59[_vm.llanguage]))
+                          _vm._v("Select Language")
                         ]),
                         _vm._v(" "),
                         _c("option", [_vm._v("en")]),
@@ -48438,7 +48262,7 @@ var render = function() {
                     attrs: { type: "button" },
                     on: { click: _vm.addUser }
                   },
-                  [_vm._v(_vm._s(this.$lang.text_52[_vm.llanguage]))]
+                  [_vm._v("Add")]
                 )
               ])
             ])
@@ -48452,14 +48276,12 @@ var render = function() {
         [
           _c("div", { staticClass: "modal-dialog" }, [
             _c("div", { staticClass: "modal-content " }, [
-              _vm._m(2),
+              _vm._m(5),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
                 _c("form", [
                   _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "pwd" } }, [
-                      _vm._v(_vm._s(this.$lang.text_10[_vm.llanguage]) + ":")
-                    ]),
+                    _c("label", { attrs: { for: "pwd" } }, [_vm._v("Role:")]),
                     _vm._v(" "),
                     _c(
                       "select",
@@ -48495,7 +48317,7 @@ var render = function() {
                       },
                       [
                         _c("option", { attrs: { value: "" } }, [
-                          _vm._v(_vm._s(this.$lang.text_54[_vm.llanguage]))
+                          _vm._v("Select Role")
                         ]),
                         _vm._v(" "),
                         _c("option", { attrs: { value: "1" } }, [
@@ -48514,9 +48336,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "pwd" } }, [
-                      _vm._v(_vm._s(this.$lang.text_18[_vm.llanguage]) + ":")
-                    ]),
+                    _c("label", { attrs: { for: "pwd" } }, [_vm._v("Name:")]),
                     _vm._v(" "),
                     _c("input", {
                       directives: [
@@ -48565,7 +48385,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
                     _c("label", { attrs: { for: "pwd" } }, [
-                      _vm._v(_vm._s(this.$lang.text_19[_vm.llanguage]) + ":")
+                      _vm._v("Province:")
                     ]),
                     _vm._v(" "),
                     _c(
@@ -48605,7 +48425,7 @@ var render = function() {
                       },
                       [
                         _c("option", { attrs: { value: "" } }, [
-                          _vm._v(_vm._s(this.$lang.text_55[_vm.llanguage]))
+                          _vm._v("Select Province")
                         ]),
                         _vm._v(" "),
                         _vm._l(_vm.provinceData, function(province) {
@@ -48621,9 +48441,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
-                    _c("label", { attrs: { for: "pwd" } }, [
-                      _vm._v(_vm._s(this.$lang.text_20[_vm.llanguage]) + ":")
-                    ]),
+                    _c("label", { attrs: { for: "pwd" } }, [_vm._v("City:")]),
                     _vm._v(" "),
                     _c(
                       "select",
@@ -48659,7 +48477,7 @@ var render = function() {
                       },
                       [
                         _c("option", { attrs: { value: "" } }, [
-                          _vm._v(_vm._s(this.$lang.text_56[_vm.llanguage]))
+                          _vm._v("Select City")
                         ]),
                         _vm._v(" "),
                         _vm._l(_vm.cityData, function(city) {
@@ -48676,7 +48494,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
                     _c("label", { attrs: { for: "pwd" } }, [
-                      _vm._v(_vm._s(this.$lang.text_57[_vm.llanguage]) + ":")
+                      _vm._v("Date Of Webinar:")
                     ]),
                     _vm._v(" "),
                     _c("input", {
@@ -48704,7 +48522,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
                     _c("label", { attrs: { for: "pwd" } }, [
-                      _vm._v(_vm._s(this.$lang.text_4[_vm.llanguage]) + ":")
+                      _vm._v("Password:")
                     ]),
                     _vm._v(" "),
                     _c("input", {
@@ -48732,7 +48550,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group" }, [
                     _c("label", { attrs: { for: "email" } }, [
-                      _vm._v(_vm._s(this.$lang.text_5[_vm.llanguage]) + ":")
+                      _vm._v("Language:")
                     ]),
                     _vm._v(" "),
                     _c(
@@ -48769,7 +48587,7 @@ var render = function() {
                       },
                       [
                         _c("option", { attrs: { value: "" } }, [
-                          _vm._v(_vm._s(this.$lang.text_59[_vm.llanguage]))
+                          _vm._v("Select Language")
                         ]),
                         _vm._v(" "),
                         _c("option", [_vm._v("en")]),
@@ -48803,7 +48621,7 @@ var render = function() {
                     attrs: { type: "button" },
                     on: { click: _vm.editUser }
                   },
-                  [_vm._v(_vm._s(this.$lang.text_21[_vm.llanguage]))]
+                  [_vm._v("Edit")]
                 )
               ])
             ])
@@ -48811,12 +48629,24 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _vm._m(3)
+      _vm._m(6)
     ],
     1
   )
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "set-header" }, [
+      _c("img", { attrs: { src: "public/assets/img/header1.jpg" } }),
+      _vm._v(" "),
+      _c("div", { staticClass: "set-text" }, [
+        _c("h2", { staticClass: "htext _h2" }, [_c("span", [_vm._v("Users")])])
+      ])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -48831,7 +48661,66 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("td", [_c("span", { staticClass: "bleft" }, [_vm._v("Email")])])
+    return _c("div", { staticClass: "col-md-9" }, [
+      _c("br"),
+      _vm._v(" "),
+      _c("h3", { staticClass: "h3" }, [
+        _vm._v("Users   "),
+        _c(
+          "a",
+          {
+            staticClass: "btn btn-sm btn-primary",
+            attrs: { href: "#changedate", "data-toggle": "modal" }
+          },
+          [_vm._v(" Add")]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("td", [_vm._v("Users ID")]),
+        _vm._v(" "),
+        _c("td", [_c("span", { staticClass: "bleft" }, [_vm._v("Full Name")])]),
+        _vm._v(" "),
+        _c("td", [_c("span", { staticClass: "bleft" }, [_vm._v("Email")])]),
+        _vm._v(" "),
+        _c("td", [_c("span", { staticClass: "bleft" }, [_vm._v("Role")])]),
+        _vm._v(" "),
+        _c("td", [_c("span", { staticClass: "bleft" }, [_vm._v("Province")])]),
+        _vm._v(" "),
+        _c("td", [_c("span", { staticClass: "bleft" }, [_vm._v("City")])]),
+        _vm._v(" "),
+        _c("td", [_c("span", { staticClass: "bleft" }, [_vm._v(" Language")])]),
+        _vm._v(" "),
+        _c("td", [_c("span", { staticClass: "bleft" }, [_vm._v(" Edit")])])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "button",
+        {
+          staticClass: "close active",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-hidden": "true"
+          }
+        },
+        [_vm._v("X")]
+      ),
+      _vm._v(" "),
+      _c("h3", { staticClass: "modal-title h3" }, [_vm._v("Add Doctor ")])
+    ])
   },
   function() {
     var _vm = this
@@ -105303,7 +105192,6 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 
 
-Vue.config.productionTip = false;
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -105322,244 +105210,6 @@ Vue.config.productionTip = false;
  */
 
 Vue.prototype.$foldername = 'spectrum';
-Vue.prototype.$lang = {
-  'text_1': {
-    'en': 'Welcome',
-    'fn': 'Bienvenue'
-  },
-  'text_2': {
-    'en': 'A program to gain a better understanding of initiation and titration principles in the authorization of Spectrum Therapeutics Medical Cannabis (MC) both within your clinical practice with your chronic pain patients and through a group learning environment.',
-    'fn': '	Programme visant à vous aider à mieux comprendre les principes d’instauration et d’ajustement posologique propres à l’autorisation d’utilisation du cannabis à des fins médicales de Spectrum TherapeuticsMC dans le cadre de votre pratique clinique auprès de patients souffrant de douleur chronique et d’un processus d’apprentissage collectif.'
-  },
-  'text_3': {
-    'en': 'Email',
-    'fn': 'Courriel'
-  },
-  'text_4': {
-    'en': 'Password',
-    'fn': 'Mot de passe'
-  },
-  'text_5': {
-    'en': 'Language',
-    'fn': 'Langue'
-  },
-  'text_6': {
-    'en': 'Remember me',
-    'fn': 'Se souvenir de moi'
-  },
-  'text_7': {
-    'en': 'Sign in',
-    'fn': 'Connexion'
-  },
-  'text_8': {
-    'en': 'By entering this site you agree to our Privacy Policy.',
-    'fn': 'En accédant à ce site, vous acceptez notre politique en matière de protection des renseignements personnels.'
-  },
-  'text_9': {
-    'en': 'Doctors',
-    'fn': 'Médecins'
-  },
-  'text_10': {
-    'en': 'Role',
-    'fn': 'Fonction'
-  },
-  'text_11': {
-    'en': 'S No.',
-    'fn': 'Numéro de série'
-  },
-  'text_12': {
-    'en': 'Pre Meeting',
-    'fn': 'Avant la rencontre'
-  },
-  'text_13': {
-    'en': 'Patient Assessment',
-    'fn': 'Évaluation du patient'
-  },
-  'text_14': {
-    'en': 'patient Follow-Up',
-    'fn': 'Suivi du patient'
-  },
-  'text_15': {
-    'en': 'Post Meeting',
-    'fn': 'Après la rencontre'
-  },
-  'text_16': {
-    'en': '© 2020 CTC Communications All rights reserved.',
-    'fn': '© 2020 CTC Communications All rights reserved.'
-  },
-  'text_17': {
-    'en': 'Users ID',
-    'fn': 'Nom d’utilisateur'
-  },
-  'text_18': {
-    'en': 'Full Name',
-    'fn': 'Nom complet'
-  },
-  'text_19': {
-    'en': 'Province',
-    'fn': 'Province'
-  },
-  'text_20': {
-    'en': 'City',
-    'fn': 'Ville'
-  },
-  'text_21': {
-    'en': 'Edit',
-    'fn': 'Modifier '
-  },
-  'text_22': {
-    'en': 'Pre-Meeting Survey',
-    'fn': 'Sondage préalable à la rencontre'
-  },
-  'text_23': {
-    'en': 'Please select from the below options for each question as applicable.',
-    'fn': 'Veuillez choisir l’une des options suivantes pour chaque question, selon le cas.'
-  },
-  'text_24': {
-    'en': 'Questions',
-    'fn': 'Questions'
-  },
-  'text_25': {
-    'en': 'Very Uncomfortable',
-    'fn': 'Très mal à l’aise '
-  },
-  'text_26': {
-    'en': 'Uncomfortable',
-    'fn': 'Mal à l’aise'
-  },
-  'text_27': {
-    'en': 'Neither Uncomfortable Nor Comfortable',
-    'fn': 'Ni mal à l’aise ni à l’aise '
-  },
-  'text_28': {
-    'en': 'Comfortable',
-    'fn': 'À l’aise'
-  },
-  'text_29': {
-    'en': 'Very Comfortable',
-    'fn': 'Très à l’aise'
-  },
-  'text_30': {
-    'en': 'Thank you for completing the pre-meeting survey!',
-    'fn': 'Merci d’avoir répondu au sondage préalable à la rencontre.'
-  },
-  'text_31': {
-    'en': 'Please proceed to patient assessment after attending webinar!',
-    'fn': 'Veuillez passer à l’évaluation du patient après avoir participé au webinaire!'
-  },
-  'text_32': {
-    'en': 'Start new assessment',
-    'fn': 'Commencer une nouvelle évaluation'
-  },
-  'text_33': {
-    'en': 'Patient Management Console',
-    'fn': 'Tableau de bord pour la prise en charge du patient '
-  },
-  'text_34': {
-    'en': 'Patient’s Initials',
-    'fn': 'Initiales du patient '
-  },
-  'text_35': {
-    'en': 'Date of Next Follow Up',
-    'fn': 'Date du prochain suivi'
-  },
-  'text_36': {
-    'en': 'Back',
-    'fn': 'Retour'
-  },
-  'text_37': {
-    'en': 'Patient Information',
-    'fn': 'Renseignements sur le patient'
-  },
-  'text_38': {
-    'en': 'PHYSICIAN MEDICAL CANNABIS AUTHORIZATION',
-    'fn': 'AUTORISATION D’UTILISATION DE CANNABIS À DES FINS MÉDICALES PAR UN MÉDECIN'
-  },
-  'text_39': {
-    'en': 'Type',
-    'fn': 'Type'
-  },
-  'text_40': {
-    'en': 'Submit',
-    'fn': 'Soumettre'
-  },
-  'text_41': {
-    'en': 'Logout',
-    'fn': 'Déconnexion'
-  },
-  'text_42': {
-    'en': 'Reset',
-    'fn': 'Réinitialisation'
-  },
-  'text_43': {
-    'en': 'Thank you for completing the patient assessment survey!',
-    'fn': 'Merci d’avoir répondu au sondage d’évaluation du patient!'
-  },
-  'text_44': {
-    'en': 'Home',
-    'fn': 'Accueil'
-  },
-  'text_45': {
-    'en': 'Do Another',
-    'fn': 'Répondre à un autre sondage'
-  },
-  'text_46': {
-    'en': 'Reschedule',
-    'fn': 'Reporter'
-  },
-  'text_47': {
-    'en': 'Scheduled',
-    'fn': 'Prévu'
-  },
-  'text_48': {
-    'en': 'Click to Enter',
-    'fn': 'Cliquer pour entrer'
-  },
-  'text_49': {
-    'en': 'Go',
-    'fn': 'Commencer'
-  },
-  'text_50': {
-    'en': 'Search',
-    'fn': 'Recherche'
-  },
-  'text_51': {
-    'en': 'Users',
-    'fn': 'Users'
-  },
-  'text_52': {
-    'en': 'Add',
-    'fn': 'Add'
-  },
-  'text_53': {
-    'en': 'Add Doctor',
-    'fn': 'Add Doctor'
-  },
-  'text_54': {
-    'en': 'Select role',
-    'fn': 'Select role'
-  },
-  'text_55': {
-    'en': 'Select province',
-    'fn': 'Select province'
-  },
-  'text_56': {
-    'en': 'Select city',
-    'fn': 'Select city'
-  },
-  'text_57': {
-    'en': 'Date Of Webinar',
-    'fn': 'Date Of Webinar'
-  },
-  'text_58': {
-    'en': 'dd-mm-yyyy',
-    'fn': 'dd-mm-yyyy'
-  },
-  'text_59': {
-    'en': 'select language',
-    'fn': 'select language'
-  }
-};
 
 
 
@@ -106774,8 +106424,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuetify__WEBPACK_IMPORTED_MODULE_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! c:\xampp7\htdocs\spectrum\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! c:\xampp7\htdocs\spectrum\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\spectrum\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\spectrum\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

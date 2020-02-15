@@ -5,8 +5,8 @@
          <div class="set-header">
             <img src="public/assets/img/header.jpg">
             <div class="set-text">
-               <h2 class="htext _h2">{{this.$lang.text_21[llanguage]}}</h2>
-               <a :href="'/'+this.$foldername+'/#/dashboard'" class="btn btn-dafult btn_reset"><i class="fa fa-angle-left"></i> {{this.$lang.text_36[llanguage]}}</a>
+               <h2 class="htext _h2">Profile</h2>
+               <a :href="'/'+this.$foldername+'/#/dashboard'" class="btn btn-dafult btn_reset"><i class="fa fa-angle-left"></i> Back</a>
 
             </div>
          </div>
@@ -22,7 +22,7 @@
                </center>
                   <div class="row form-group">
                      <div class="col-md-6">
-                        <label for="fname">{{this.$lang.text_18[llanguage]}}</label>
+                        <label for="fname">Name</label>
                         <input type="text" id="name" name="name" v-model="edit.name" class="form-control input-lg">
                      </div>
                      <div class="col-md-6">
@@ -32,23 +32,23 @@
                   </div>
                   <div class="row form-group">
                      <div class="col-md-6">
-                        <label for="fname">{{this.$lang.text_19[llanguage]}}</label>
+                        <label for="fname">Province</label>
                         <select class="form-control input-lg" v-model="edit.province" @change="fetchCityEdit" >
-                           <option value="">{{this.$lang.text_55[llanguage]}}</option>
+                           <option value="">Select Province</option>
                            <option  v-for="province in provinceData" :value="province.Province_ID">{{province.Province_Name}}</option>
                         </select>
                      </div>
                      <div class="col-md-6">
-                        <label for="lname">{{this.$lang.text_20[llanguage]}}</label>
+                        <label for="lname">City</label>
                         <select class="form-control input-lg" v-model="edit.city">
-                           <option value="">{{this.$lang.text_56[llanguage]}}</option>
+                           <option value="">Select City</option>
                            <option  v-for="city in cityData" :value="city.City_ID">{{city.City_Name}}</option>
                         </select>
                      </div>
                   </div>
                   <div class="row form-group">
                      <div class="col-md-6">
-                        <label for="fname">{{this.$lang.text_4[llanguage]}}</label>
+                        <label for="fname">Password</label>
                         <input type="text" id="password" name="password"  v-model="password" class="form-control input-lg">
                      </div>
                      <div class="col-md-6">
@@ -85,7 +85,6 @@ export default {
          password:'',
          cpassword:'',
          cityData:[],
-         llanguage:localStorage.getItem('language'),
          edit:{
          },
          msg:'',

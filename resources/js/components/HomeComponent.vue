@@ -5,10 +5,8 @@
       <div class="set-header">
          <img src="public/assets/img/header1.jpg">
          <div class="set-text">
-            <h2 class="htext _h2" v-if="language=='en'"><span>S</span>pectrum <span>T</span>herapeutics <span>E</span>xperience <span>P</span>rogram</h2>
-            <h2 class="htext _h2" v-if="language=='fn'"><span>P</span>rogramme <span>E</span>xpérience de  <span>S</span>pectrum <span>T</span>herapeutics</h2>
-            
-            <a v-if="role=='2' || role=='3'" :href="'/'+this.$foldername+'/#/dashboard/patientassesment'" class="btn btn-info  btn-lg hasicon"><span class="thum"><img src="public/assets/img/arrow.svg" /></span> {{this.$lang.text_32[lang]}}</a>
+            <h2 class="htext _h2"><span>W</span>elcome <span>T</span>o <span>S</span>pectrum <span>T</span>herapeutics <span>E</span>xperience <span>P</span>rogram</h2>
+            <a v-if="role=='2' || role=='3'" :href="'/'+this.$foldername+'/#/dashboard/patientassesment'" class="btn btn-info  btn-lg hasicon"><span class="thum"><img src="public/assets/img/arrow.svg" /></span> Start New Assessment</a>
          </div>
       </div>
       <div class="container-fluid set-questions">
@@ -22,8 +20,8 @@
          <div class="container-fluid set-questions">
             <div class="row">
                <div class="col-md-9">
-                  <h3 class="h3" v-if="role=='2' || role=='3'"  >{{this.$lang.text_33[language]}}</h3>
-                  <h3 class="h3" v-if="role=='1'"  >{{this.$lang.text_9[language]}}</h3>
+                  <h3 class="h3" v-if="role=='2' || role=='3'"  >Patient Management Console</h3>
+                  <h3 class="h3" v-if="role=='1'"  >Doctors</h3>
                   <span class="">
                      <!-- <button   type="button">Export</button> -->
                       <download-csv v-if="role=='1'"
@@ -41,13 +39,13 @@
                   <div class="input-group" v-if="role=='2' || role=='3'" >
                      <input type="text" class="form-control" @keyup="filterPatients" v-model="search" placeholder="Search">
                      <span class="input-group-btn">
-                     <button type="button" class="btn btn-default" @click="filterPatients">{{this.$lang.text_49[lang]}}</button>
+                     <button type="button" class="btn btn-default" @click="filterPatients">Go</button>
                      </span>
                   </div>
                   <div class="input-group" v-if="role=='1'" >
                      <input type="text" class="form-control" @keyup="filterUser" v-model="search" placeholder="Search">
                      <span class="input-group-btn">
-                     <button type="button" class="btn btn-default" @click="filterUser" >{{this.$lang.text_49[lang]}}</button>
+                     <button type="button" class="btn btn-default" @click="filterUser" >Go</button>
                      </span>
                   </div>
                   
@@ -63,13 +61,13 @@
                         <thead>
                            <tr>
                               <td>Patient ID</td>
-                              <td v-if="role=='1'"><span class="bleft">{{this.$lang.text_9[lang]}}</span> </td>
-                              <td v-if="role=='1'"><span class="bleft">{{this.$lang.text_10[lang]}}</span> </td>
-                              <td v-if="role=='2' || role=='3'"><span class="bleft">{{this.$lang.text_34[lang]}}</span> </td>
-                              <td v-if="role=='2' || role=='3'"><span class="bleft">{{this.$lang.text_34[lang]}}</span></td>
-                              <td><span class="bleft">{{this.$lang.text_13[lang]}}</span></td>
-                              <td><span class="bleft">1<sup>st</sup> {{this.$lang.text_14[lang]}}</span></td>
-                              <td><span class="bleft">2<sup>nd</sup> {{this.$lang.text_14[lang]}}</span> </td>
+                              <td v-if="role=='1'"><span class="bleft">Doctor</span> </td>
+                              <td v-if="role=='1'"><span class="bleft">Role</span> </td>
+                              <td v-if="role=='2' || role=='3'"><span class="bleft">Patient’s Initials</span> </td>
+                              <td v-if="role=='2' || role=='3'"><span class="bleft">Date of Next Follow Up</span></td>
+                              <td><span class="bleft">Patient Assessment</span></td>
+                              <td><span class="bleft">1<sup>st</sup> Patient Follow-Up</span></td>
+                              <td><span class="bleft">2<sup>nd</sup> Patient Follow-Up</span> </td>
                            </tr>
                         </thead>
                         <tbody>
@@ -138,20 +136,20 @@
                      <table v-if="role=='1'" class="table mytable">
                         <thead>
                            <tr>
-                              <td>{{this.$lang.text_11[lang]}}</td>
-                              <td v-if="role=='1'"><span class="bleft">{{this.$lang.text_9[lang]}}</span> </td>
-                              <td v-if="role=='1'"><span class="bleft">{{this.$lang.text_10[lang]}}</span> </td>
+                              <td>S No.</td>
+                              <td v-if="role=='1'"><span class="bleft">Doctor</span> </td>
+                              <td v-if="role=='1'"><span class="bleft">Role</span> </td>
                               <td v-if="role=='1'"><span class="bleft">Email</span> </td>
                               <td v-if="role=='1'"><span class="bleft">Province</span> </td>
                               <td v-if="role=='1'"><span class="bleft">City</span> </td>
-                              <td v-if="role=='1'"><span class="bleft">{{this.$lang.text_12[lang]}}</span> </td>
+                              <td v-if="role=='1'"><span class="bleft">Pre Meeting</span> </td>
                               <td v-if="role=='2' || role=='3'"><span class="bleft">Patient’s Initials</span> </td>
                               <td v-if="role=='2' || role=='3'"><span class="bleft">Date of Next Follow Up</span></td>
-                              <td><span class="bleft">{{this.$lang.text_13[lang]}}</span></td>
-                              <td><span class="bleft">1<sup>st</sup> {{this.$lang.text_14[lang]}}</span></td>
-                              <td><span class="bleft">2<sup>nd</sup> {{this.$lang.text_14[lang]}}</span> </td>
-                              <td v-if="role=='1'"><span class="bleft">{{this.$lang.text_15[lang]}}</span> </td>
-                              <td v-if="role=='1'"><span class="bleft">{{this.$lang.text_9[lang]}}</span> </td>
+                              <td><span class="bleft">Patient Assessment</span></td>
+                              <td><span class="bleft">1<sup>st</sup> Patient Follow-Up</span></td>
+                              <td><span class="bleft">2<sup>nd</sup> Patient Follow-Up</span> </td>
+                              <td v-if="role=='1'"><span class="bleft">Post Meeting</span> </td>
+                              <td v-if="role=='1'"><span class="bleft">Edit</span> </td>
                               
                                  
 
@@ -211,10 +209,7 @@
                                  </span>
                               </td>
                               <td><span class="bleft2 center">
-                                 <button type="buttton" href="#changedate2" data-toggle="modal"  @click="editPop(patient.doc_id)"   class="btn btn-primary">
-                                    <span v-if="lang=='en'">Edit</span>
-                                    <span v-if="lang=='fn'">Modifier</span>
-                                 </button>
+                                 <button type="buttton" href="#changedate2" data-toggle="modal"  @click="editPop(patient.doc_id)"   class="btn btn-primary">Edit</button>
                                  </span>
                               </td>
                               
@@ -245,19 +240,17 @@
                         <li><a href="#">French</a></li>
                      </ul>
                   </div> -->
-                  <h3 class="modal-title h3">{{this.$lang.text_22[lang]}}</h3>
-                  <p class="text-sub">{{this.$lang.text_23[lang]}}.</p>
+                  <h3 class="modal-title h3">Pre-Meeting Survey </h3>
+                  <p class="text-sub">Please select from the below options for each question as applicable.</p>
                </div>
                <div class="modal-body">
                   <div class="thanks">
                      <img class="art" src="public/assets/img/art1.svg" alt="">
                      <p class="text">  
-                                       {{this.$lang.text_31[lang]}}
+                                       Thank you for completing the pre-meeting survey
                                        <br />
                                        <br />
-                                       <!-- Please proceed  to patient assessment after attending webinar  -->
-                                       {{this.$lang.text_32[lang]}}
-
+                                       Please proceed  to patient assessment after attending webinar 
                      </p>
                   </div>
                   <div class="table-responsive">
@@ -265,7 +258,7 @@
                         <thead>
                            <tr>
                               <td>#</td>
-                              <td><span class="bleft2">{{this.$lang.text_24[lang]}}</span> </td>
+                              <td><span class="bleft2">Questions</span> </td>
                               <td v-for="PreMeetingQuestionsOption in PreMeetingQuestionsOptions"><span class=" text-center textsm ">{{JSON.parse(PreMeetingQuestionsOption.option_text)[language2]}}</span></td>
                            </tr>
                         </thead>
@@ -296,11 +289,11 @@
                <!--<div v-if="submit==true  && valid==true" class="alert alert-success text-center">{{msg}}</div>-->
                <!-- <div v-if="submit==true  && valid!=true" class="alert alert-danger text-center">{{msg}}</div> -->
                <div class="modal-footer text-center"> 
-                  <button type="button" class="btn btn-info" @click="PreMeetingSubmit" >{{this.$lang.text_40[lang]}}</button>
-                  <button type="button" class="btn btn-default btn_reset"  @click="reset_modal" >{{this.$lang.text_42[lang]}}</button>
+                  <button type="button" class="btn btn-info" @click="PreMeetingSubmit" >Submit</button>
+                  <button type="button" class="btn btn-default btn_reset"  @click="reset_modal" >Reset</button>
                </div>
                <div class="text-center" v-if="fsubmit==true">
-                     <button type="button" class="btn btn-info"   @click="close_modal"  >{{this.$lang.text_32[lang]}}</button>
+                     <button type="button" class="btn btn-info"   @click="close_modal"  >Close</button>
                </div>
                
             </div>
@@ -321,7 +314,7 @@
                </div>
             </div>
             <div class="modal-footer text-center"> 
-               <button type="button" class="btn btn-info"  @click="resech_submit()"   >{{this.$lang.text_46[lang]}}</button>
+               <button type="button" class="btn btn-info"  @click="resech_submit()"   >Reschedule</button>
             </div>
          </div>
       </div>
@@ -342,7 +335,7 @@
                      <div class="form-group">
                         <label for="pwd">Role:</label>
                         <select v-model="edit.role" class="form-control">
-                              <option value="">{{this.$lang.text_54[lang]}}</option>
+                              <option value="">Select Role</option>
                               <option value="1">admin</option>
                               <option value="2">doctor</option>
                               <option value="3">demo</option>
@@ -359,18 +352,18 @@
                         <input type="hidden" class="form-control"  v-model="edit.email">
                     <!-- </div> -->
                     <div class="form-group">
-                        <label for="pwd">{{this.$lang.text_55[lang]}}:</label>
+                        <label for="pwd">Province:</label>
                         <!-- <input type="text" class="form-control"  v-model="email">  @change="fetchCityEdit" -->
                         <select class="form-control" v-model="edit.province"  @change="fetchCityEdit" >  
-                           <option value="">{{this.$lang.text_55[lang]}}</option>
+                           <option value="">Select Province</option>
                            <option  v-for="province in provinceData" :value="province.Province_ID">{{province.Province_Name}}</option>
 
                         </select>
                     </div>
                      <div class="form-group">
-                        <label for="pwd">{{this.$lang.text_56[lang]}}:</label>
+                        <label for="pwd">City:</label>
                         <select class="form-control" v-model="edit.city">
-                           <option value="">{{this.$lang.text_56[lang]}}</option>
+                           <option value="">Select City</option>
                            <option  v-for="city in cityData" :value="city.City_ID">{{city.City_Name}}</option>
 
                            
@@ -378,18 +371,18 @@
                     </div> 
                     
                     <div class="form-group">
-                        <label for="pwd">{{this.$lang.text_57[lang]}}:</label>
+                        <label for="pwd">Date Of Webinar:</label>
                         <input type="date" class="form-control"  v-model="edit.dateWeb">
                     </div>
                     
                     <div class="form-group">
-                        <label for="pwd">{{this.$lang.text_4[lang]}}:</label>
+                        <label for="pwd">Password:</label>
                         <input type="text" class="form-control"  v-model="edit.password">
                     </div>
                     <div class="form-group">
-                        <label for="email">{{this.$lang.text_59[lang]}}:</label>
+                        <label for="email">Language:</label>
                         <select class="form-control" v-model="edit.language">
-                            <option value="">{{this.$lang.text_59[lang]}}</option>
+                            <option value="">Select Language</option>
                             <option >en</option>
                             <option >fr</option>
                         </select>
@@ -403,7 +396,7 @@
                 </form>
             </div>
             <div class="modal-footer text-center"> 
-               <button type="button" class="btn btn-info"  @click="editUser"   >{{this.$lang.text_21[lang]}}</button>
+               <button type="button" class="btn btn-info"  @click="editUser"   >Edit</button>
                <!-- -->
             </div>
             
@@ -456,8 +449,7 @@ export default {
 			submit: '',
 			valid: '',
 			msg: '',
-         role: localStorage.getItem('role'),
-         lang:localStorage.getItem('language'),
+			role: localStorage.getItem('role'),
 			user_id: localStorage.getItem('user_id'),
          currentEditId:0,
          cdate:'',

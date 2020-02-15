@@ -7,22 +7,21 @@
       <div class="set-header">
          <img src="public/assets/img/header.jpg">
          <div class="set-text">
-            <h2 class="htext _h2">{{this.$lang.text_13[language]}}</h2>
-            <a :href="'/'+this.$foldername+'/#/dashboard'" class="btn btn-dafult btn_reset"><i class="fa fa-angle-left"></i> {{this.$lang.text_36[language]}}</a>
+            <h2 class="htext _h2">Patient Assessment</h2>
+            <a :href="'/'+this.$foldername+'/#/dashboard'" class="btn btn-dafult btn_reset"><i class="fa fa-angle-left"></i> Back</a>
          </div>
       </div>
       <div class="container-fluid set-questions">
          <div class="row">
             <div class="col-md-12">
-               <div class="que_top">{{this.$lang.text_37[language]}}</div>
+               <div class="que_top">PATIENT INFORMATION</div>
             </div>
          </div>
          <!-- Q1 -->
          <div class="row" v-for="(Question,index) in firstAssesmentQuestions" >
             <div class="" v-if="(index==10)">
                <div class="col-md-12">
-                  <div class="que_top" v-if="language=='en'">PHYSICIAN MEDICAL CANNABIS AUTHORIZATION</div>
-                  <div class="que_top" v-if="language=='fn'">AUTORISATION D’UTILISATION DE CANNABIS À DES FINS MÉDICALES PAR UN MÉDECIN</div>
+                  <div class="que_top">PHYSICIAN MEDICAL CANNABIS AUTHORIZATION</div>
                </div>
             </div>
             <div class="col-md-12">
@@ -390,7 +389,7 @@
          </div>
          <div class="row">
             <div class="col-md-12 text-center">
-               <button  class="btn btn-info" type="button" @click="submit">{{this.$lang.text_40[language]}}</button>
+               <button  class="btn btn-info" type="button" @click="submit">Submit</button>
             </div>
          </div>
          <div class="row  paddingtop-98" >
@@ -404,18 +403,18 @@
          <div class="modal-content">
                <div class="modal-header">
                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button> 
-                  <h3 class="modal-title h3"> Patient Assessment Survey</h3>
+                  <h3 class="modal-title h3"> Patient Assessment Survey </h3>
                </div>
                <div class="modal-body">
 
                <div class="thanks active">
                   <img class="art" src="public/assets/img/art1.svg" alt="">
-                  <p class="text">{{this.$lang.text_43[language]}}</p>
+                  <p class="text">Thank you for completing the patient assessment survey!</p>
                </div>
                
                </div>
                <div class="modal-footer text-center"> 
-                  <button type="button" class="btn btn-info" @click="gotohome" >{{this.$lang.text_44[language]}}</button>
+                  <button type="button" class="btn btn-info" @click="gotohome" >Home</button>
                   <button type="button" class="btn btn-default btn_reset"  @click="doanother" >Add new patient assessment  </button>
                </div>
          </div>
@@ -582,30 +581,30 @@ export default {
 
             }
 
-         if(this.firstAssesmentAnswers[6].ans==''){
-                  this.error=true;
-                  $("#slider-6").focus();
-
-                  this.submitted=true;
-                  this.msg='Please Select one option';
-                  $("#err-6").removeClass('hide');
-                  return;
-            }else{
-                  $("#err-6").addClass('hide');
-
-            }
-
-            
-         if(this.firstAssesmentAnswers[5].ans=='' ){
+         if(this.firstAssesmentAnswers[5].ans==''){
                   this.error=true;
                   $("#slider-5").focus();
 
                   this.submitted=true;
-                  this.msg='Please enter year ';
+                  this.msg='Please Select one option';
                   $("#err-5").removeClass('hide');
                   return;
             }else{
                   $("#err-5").addClass('hide');
+
+            }
+
+            
+         if(this.firstAssesmentAnswers[6].ans=='' ){
+                  this.error=true;
+                  $("#slider-6").focus();
+
+                  this.submitted=true;
+                  this.msg='Please enter year ';
+                  $("#err-6").removeClass('hide');
+                  return;
+            }else{
+                  $("#err-6").addClass('hide');
             }
 
 
@@ -615,16 +614,16 @@ export default {
 
             
 
-         if(this.firstAssesmentAnswers[5].ans<lastYear || this.firstAssesmentAnswers[5].ans>year  ){
+         if(this.firstAssesmentAnswers[6].ans<lastYear || this.firstAssesmentAnswers[6].ans>year  ){
                   this.error=true;
-                  $("#slider-5").focus();
+                  $("#slider-6").focus();
 
                   this.submitted=true;
                   this.msg='Year must be between '+lastYear+' to '+year;
-                  $("#err-5").removeClass('hide');
+                  $("#err-6").removeClass('hide');
                   return;
             }else{
-                  $("#err-5").addClass('hide');
+                  $("#err-6").addClass('hide');
             }
 
             

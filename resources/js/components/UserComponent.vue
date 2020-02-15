@@ -5,7 +5,7 @@
          <div class="set-header">
             <img src="public/assets/img/header1.jpg">
             <div class="set-text">
-               <h2 class="htext _h2"> <span>{{this.$lang.text_51[llanguage]}}</span></h2>
+               <h2 class="htext _h2"> <span>Users</span></h2>
                <!-- <a href="patient-assessment.html" class="btn btn-info  btn-lg hasicon"><span class="thum"><img src="public/assets/img/arrow.svg" /></span> Start New Assessment</a> -->
             </div>
          </div>
@@ -20,7 +20,7 @@
                <div class="row">
                   <div class="col-md-9">
                       <br />
-                     <h3 class="h3">{{this.$lang.text_51[llanguage]}}   <a href="#changedate" data-toggle="modal"  class="btn btn-sm btn-primary"> {{this.$lang.text_52[llanguage]}}</a> </h3> 
+                     <h3 class="h3">Users   <a href="#changedate" data-toggle="modal"  class="btn btn-sm btn-primary"> Add</a> </h3> 
                   </div>
                   <div class="col-md-3">
                      <!-- <div class="input-group">
@@ -30,7 +30,7 @@
                         </span>
                      </div> -->
                      <br />
-                     <a :href="'/'+this.$foldername+'/#/dashboard'"   class="btn btn-sm btn-info pull-right"> {{this.$lang.text_36[llanguage]}}</a>
+                     <a :href="'/'+this.$foldername+'/#/dashboard'"   class="btn btn-sm btn-info pull-right"> Back</a>
                      <br />
                   </div>
                </div>
@@ -40,14 +40,14 @@
                         <table class="table mytable">
                            <thead>
                               <tr>
-                                 <td>{{this.$lang.text_17[llanguage]}}</td>
-                                 <td><span class="bleft">{{this.$lang.text_18[llanguage]}}</span> </td>
+                                 <td>Users ID</td>
+                                 <td><span class="bleft">Full Name</span> </td>
                                  <td><span class="bleft">Email</span></td>
-                                 <td><span class="bleft">{{this.$lang.text_10[llanguage]}}</span></td>
-                                 <td><span class="bleft">{{this.$lang.text_19[llanguage]}}</span></td>
-                                 <td><span class="bleft">{{this.$lang.text_20[llanguage]}}</span></td>
-                                 <td><span class="bleft"> {{this.$lang.text_5[llanguage]}}</span></td>
-                                 <td><span class="bleft"> {{this.$lang.text_21[llanguage]}}</span></td>
+                                 <td><span class="bleft">Role</span></td>
+                                 <td><span class="bleft">Province</span></td>
+                                 <td><span class="bleft">City</span></td>
+                                 <td><span class="bleft"> Language</span></td>
+                                 <td><span class="bleft"> Edit</span></td>
                               </tr>
                            </thead>
                            <tbody>
@@ -64,14 +64,7 @@
                                  <td><span class="bleft2">{{user.City_Name}}</span> </td>
                                  <td><span class="bleft2 center">{{user.language}}</span></td>
                                  <td><span class="bleft2 center">
-                                    <button type="buttton" href="#changedate2" data-toggle="modal"  @click="editPop(user.id)"   class="btn btn-primary">
-                                       
-                                          <span v-if="language=='en'">Edit</span>
-                                          <span v-if="language=='fn'">Modifier</span>
-                                    <!-- {{this.$lang.text_51[llanguage]}} -->
-                                    
-
-                                       </button>
+                                    <button type="buttton" href="#changedate2" data-toggle="modal"  @click="editPop(user.id)"   class="btn btn-primary">Edit</button>
                                     </span></td>
                               </tr>
                            </tbody>
@@ -91,15 +84,15 @@
          <div class="modal-content ">
             <div class="modal-header">
                <button type="button" class="close active" data-dismiss="modal"   aria-hidden="true">X</button> 
-               <h3 class="modal-title h3">{{this.$lang.text_53[llanguage]}} </h3>
+               <h3 class="modal-title h3">Add Doctor </h3>
             </div>
             <div class="modal-body">
                <form>
                     
                     <div class="form-group">
-                        <label for="pwd">{{this.$lang.text_54[llanguage]}}:</label>
+                        <label for="pwd">Role:</label>
                         <select v-model="role" class="form-control">
-                              <option value="">{{this.$lang.text_54[llanguage]}}</option>
+                              <option value="">Select Role</option>
                               <option value="1">admin</option>
                               <option value="2">doctor</option>
                               <option value="3">demo</option>
@@ -108,7 +101,7 @@
 
 
                     <div class="form-group">
-                        <label for="pwd">{{this.$lang.text_18[llanguage]}}:</label>
+                        <label for="pwd">Name:</label>
                         <input type="text"  v-model="Name" class="form-control" >
                     </div>
                     
@@ -117,18 +110,18 @@
                         <input type="text" class="form-control"  v-model="email">
                     </div>
                     <div class="form-group">
-                        <label for="pwd">{{this.$lang.text_19[llanguage]}}:</label>
+                        <label for="pwd">Province:</label>
                         <!-- <input type="text" class="form-control"  v-model="email"> -->
                         <select class="form-control" v-model="province" @change="fetchCity" >
-                           <option value="">{{this.$lang.text_55[llanguage]}}</option>
+                           <option value="">Select Province</option>
                            <option v-for="province in provinceData" :value="province.Province_ID"     >{{province.Province_Name}}</option>
 
                         </select>
                     </div>
                      <div class="form-group">
-                        <label for="pwd">{{this.$lang.text_20[llanguage]}}:</label>
+                        <label for="pwd">City:</label>
                         <select class="form-control" v-model="city">
-                           <option value="">{{this.$lang.text_56[llanguage]}}</option>
+                           <option value="">Select City</option>
                            <option v-for="city in cityData" :value="city.City_ID">{{city.City_Name}}</option>
 
                            
@@ -136,18 +129,18 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="pwd">{{this.$lang.text_57[llanguage]}}:</label>
+                        <label for="pwd">Date Of Webinar:</label>
                         <input type="date" class="form-control"  v-model="dateWeb">
                     </div>
                     
                     <div class="form-group">
-                        <label for="pwd">{{this.$lang.text_4[llanguage]}}:</label>
+                        <label for="pwd">Password:</label>
                         <input type="text" class="form-control"  v-model="password">
                     </div>
                     <div class="form-group">
-                        <label for="email">{{this.$lang.text_5[llanguage]}}:</label>
-                        <select class="form-control" v-model="lang">
-                            <option value="">{{this.$lang.text_59[llanguage]}}</option>
+                        <label for="email">Language:</label>
+                        <select class="form-control" v-model="language">
+                            <option value="">Select Language</option>
                             <option>en</option>
                             <option>fr</option>
                         </select>
@@ -160,7 +153,7 @@
                 </form>
             </div>
             <div class="modal-footer text-center"> 
-               <button type="button" class="btn btn-info" @click="addUser"   >{{this.$lang.text_52[llanguage]}}</button>
+               <button type="button" class="btn btn-info" @click="addUser"   >Add</button>
             </div>
             
          </div>
@@ -178,9 +171,9 @@
                <form>
 
                      <div class="form-group">
-                        <label for="pwd">{{this.$lang.text_10[llanguage]}}:</label>
+                        <label for="pwd">Role:</label>
                         <select v-model="edit.role" class="form-control">
-                              <option value="">{{this.$lang.text_54[llanguage]}}</option>
+                              <option value="">Select Role</option>
                               <option value="1">admin</option>
                               <option value="2">doctor</option>
                               <option value="3">demo</option>
@@ -189,7 +182,7 @@
                     
                     
                     <div class="form-group">
-                        <label for="pwd">{{this.$lang.text_18[llanguage]}}:</label>
+                        <label for="pwd">Name:</label>
                         <input type="text"  v-model="edit.name" class="form-control" >
                     </div>
                     <!-- <div class="form-group"> -->
@@ -197,18 +190,18 @@
                         <input type="hidden" class="form-control"  v-model="edit.email">
                     <!-- </div> -->
                     <div class="form-group">
-                        <label for="pwd">{{this.$lang.text_19[llanguage]}}:</label>
+                        <label for="pwd">Province:</label>
                         <!-- <input type="text" class="form-control"  v-model="email"> -->
                         <select class="form-control" v-model="edit.province" @change="fetchCityEdit" >
-                           <option value="">{{this.$lang.text_55[llanguage]}}</option>
+                           <option value="">Select Province</option>
                            <option  v-for="province in provinceData" :value="province.Province_ID">{{province.Province_Name}}</option>
 
                         </select>
                     </div>
                      <div class="form-group">
-                        <label for="pwd">{{this.$lang.text_20[llanguage]}}:</label>
+                        <label for="pwd">City:</label>
                         <select class="form-control" v-model="edit.city">
-                           <option value="">{{this.$lang.text_56[llanguage]}}</option>
+                           <option value="">Select City</option>
                            <option  v-for="city in cityData" :value="city.City_ID">{{city.City_Name}}</option>
 
                            
@@ -216,18 +209,18 @@
                     </div> 
                     
                     <div class="form-group">
-                        <label for="pwd">{{this.$lang.text_57[llanguage]}}:</label>
+                        <label for="pwd">Date Of Webinar:</label>
                         <input type="date" class="form-control"  v-model="edit.dateWeb">
                     </div>
                     
                     <div class="form-group">
-                        <label for="pwd">{{this.$lang.text_4[llanguage]}}:</label>
+                        <label for="pwd">Password:</label>
                         <input type="text" class="form-control"  v-model="edit.password">
                     </div>
                     <div class="form-group">
-                        <label for="email">{{this.$lang.text_5[llanguage]}}:</label>
+                        <label for="email">Language:</label>
                         <select class="form-control" v-model="edit.language">
-                            <option value="">{{this.$lang.text_59[llanguage]}}</option>
+                            <option value="">Select Language</option>
                             <option >en</option>
                             <option >fr</option>
                         </select>
@@ -240,7 +233,7 @@
                 </form>
             </div>
             <div class="modal-footer text-center"> 
-               <button type="button" class="btn btn-info" @click="editUser"   >{{this.$lang.text_21[llanguage]}}</button>
+               <button type="button" class="btn btn-info" @click="editUser"   >Edit</button>
             </div>
             
          </div>
@@ -273,9 +266,7 @@ export default {
             password:'',
             role:'',
             dateWeb:'',
-            language:'en',
-            lang:'en',
-            llanguage:localStorage.getItem('language'),
+            language:'',
             Name:'',
             wrong:false,
             users:[],
